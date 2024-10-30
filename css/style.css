@@ -68,6 +68,11 @@
   stroke: black;
 }
 
+.liked {
+  fill: red !important;
+ 
+}
+
 .navbar.is-transparent {
   background-color: transparent;
   background-image: none;
