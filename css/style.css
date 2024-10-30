@@ -1,16 +1,17 @@
+.body-full-center {
+  display: grid;
+}
+
 .is-background-v1 {
   min-height: 100%;
   min-width: 1024px;
-	
-  /* Set up proportionate scaling */
   width: 100%;
   height: auto;
-	
-  /* Set up positioning */
   position: fixed;
   top: 0;
   left: 0;
-
+  object-fit: cover;
+  object-position: center;
 }
 
 .is-poke-background {
@@ -61,23 +62,53 @@
   right: 0;
   top: 0;
   padding: 10px;
-  
 }
 .like-box .like-icon {
   fill: transparent;
   stroke: black;
 }
 
-.navbar {
-  &.is-transparent {
-    background-color: transparent;
-    background-image: none;
-  }
+.navbar.is-transparent {
+  background-color: transparent;
+  background-image: none;
+}
+
+.is-divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #7a7a7a; /* Color de texto para el contenido del divisor */
+  margin: 1.5rem 0; /* Espacio arriba y abajo del divisor */
+  border-bottom: 1px solid #dbdbdb; /* Línea de separación */
+}
+
+.is-divider::before,
+.is-divider::after {
+  content: "";
+  flex: 1;
+  border-bottom: 1px solid #dbdbdb;
+}
+
+.is-divider::before {
+  margin-right: 0.75em;
+}
+
+.is-divider::after {
+  margin-left: 0.75em;
+}
+
+.back-button {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  border-radius: 50%;
+  background-color: white;
+  padding: 10px;
+  margin: 10px;
+  display: flex;
 }
 
 /**Loader**/
-
-
 
 .poke-loader {
   position: fixed;
