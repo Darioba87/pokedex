@@ -27,9 +27,7 @@ export async function getPokemonList(page = 1) {
     return;
   }
 
-  // Add images URL to Pokemon objects
   const pokemons = data.results.map((pokemon) => {
-    // Extraer el ID del Pokémon desde la URL
     const pokemonId = pokemon.url.split("/")[6];
     return {
       ...pokemon,
@@ -45,7 +43,7 @@ export async function getPokemonList(page = 1) {
 function generateContent(pokemons) {
   const pokegrid = el("#poke-grid");
   pokegrid.innerHTML = "";
-
+  el("#loader").classList.remove("is-hidden");
   let content = "";
   pokemons.forEach((element) => {
     const pokemonId = element.url.split("/")[6];
@@ -61,43 +59,46 @@ function generateContent(pokemons) {
     }
 
     content += `
-      <div class="float-box cell is-relative is-clickable	">
-              <div id="poke-card-${pokemonId}" class="overlay  z-0">
-
-        <div class="like-box">
+      <div class="cell  float-box">
+        <div class="box grid is-justify-items-center is-poke-background is-relative ">
+          <div id="poke-card-${pokemonId}" class="overlay z-0"></div>
+          <div class="like-box">
             <span class="icon">
-                <svg class="like-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z" />
-                </svg>
+              <svg
+                class="like-icon"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z"
+                />
+              </svg>
             </span>
-        </div>
-        </div>
-        <div class="box is-poke-background is-flex is-flex-direction-column	is-align-items-center			">
-            <figure class="image is-128x128">
-                <img src="${element.imageUrl}" />
-            </figure>
-            <br />
-            <div class="content">
-                <p class="is-size-5 
-          has-text-centered 
-          is-capitalized
-          is-relative z-0
-          ">
-                    <strong class=""> ${element.name} </strong>
-                    <br />
-                <div class="buttons">
-                    <a onclick="viewDetails(${pokemonId})" class="button is-primary">
-                        <strong> Mehr Info </strong>
-                    </a>
-                </div>
-                </p>
+          </div>
+          <figure class="image is-128x128">
+            <img src="${element.imageUrl}" />
+          </figure>
+          <div class="content">
+            
+            <p class="is-size-5 has-text-centered is-capitalized is-relative z-0 ">
+              <strong class="is-family-secondary	"> ${element.name} </strong>
+            </p>
+            
+            <div class="buttons">
+              <a onclick="viewDetails(${pokemonId})" class="button is-primary">
+                <strong> Mehr Info </strong>
+              </a>
             </div>
+          </div>
         </div>
-    </div>
-    
+      </div>
+
     `;
   });
   pokegrid.innerHTML = content;
+  setTimeout(() => {
+    el("#loader").classList.add("is-hidden");
+  }, 1000);
 }
 
 function viewDetails(pokemonId) {
