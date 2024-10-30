@@ -1,3 +1,4 @@
-import { getPokemonList } from "./modules/main.js";
+import { init,  } from "./modules/main.js";
 
-getPokemonList();
+
+init();

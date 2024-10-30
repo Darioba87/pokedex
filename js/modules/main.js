@@ -11,9 +11,9 @@ async function loadTypesColors() {
   }
 }
 
-async function init() {
+export async function init() {
   await loadTypesColors();
-  getPokemonList();
+  await getPokemonList();
 }
 
 export async function getPokemonList(page = 1) {
@@ -54,15 +54,18 @@ function generateContent(pokemons) {
         pokemonType = details.types[0].type.name;
         const typeColor = typeColors[pokemonType] || "#A8A77A";
 
-        el(`#poke-card-${pokemonId}`).style.backgroundColor = typeColor;
+        const pokeCard = el(`#poke-card-${pokemonId}`);
+        if (pokeCard) {
+          pokeCard.style.backgroundColor = typeColor;
+        }
       });
     }
 
     content += `
-      <div class="cell  float-box">
-        <div class="box grid is-justify-items-center is-poke-background is-relative ">
+      <div class="cell float-box">
+        <div class="box grid is-justify-items-center is-poke-background is-relative">
           <div id="poke-card-${pokemonId}" class="overlay z-0"></div>
-          <div class="like-box">
+          <div id="like-${pokemonId}" class="like like-box is-clickable" data-liked="false">
             <span class="icon">
               <svg
                 class="like-icon"
@@ -79,11 +82,9 @@ function generateContent(pokemons) {
             <img src="${element.imageUrl}" />
           </figure>
           <div class="content">
-            
             <p class="is-size-5 has-text-centered is-capitalized is-relative z-0 ">
-              <strong class="is-family-secondary	"> ${element.name} </strong>
+              <strong class="is-family-secondary">${element.name}</strong>
             </p>
-            
             <div class="buttons">
               <a onclick="viewDetails(${pokemonId})" class="button is-primary">
                 <strong> Mehr Info </strong>
@@ -92,10 +93,19 @@ function generateContent(pokemons) {
           </div>
         </div>
       </div>
-
     `;
   });
   pokegrid.innerHTML = content;
+
+  // Seleccionar todos los botones de 'like' y agregar el event listener
+  pokemons.forEach((element) => {
+    const pokemonId = element.url.split("/")[6];
+    const likeElement = el(`#like-${pokemonId}`);
+    if (likeElement) {
+      likeElement.addEventListener("click", likeButton);
+    }
+  });
+
   setTimeout(() => {
     el("#loader").classList.add("is-hidden");
   }, 1000);
@@ -132,6 +142,14 @@ function createPagination() {
   pagination.appendChild(nextButton);
 }
 
-window.viewDetails = viewDetails;
+ function likeButton(event) {
+  const likeElement = event.currentTarget;
+  const svg = likeElement.querySelector(".like-icon");
+  const isLiked = likeElement.getAttribute("data-liked") === "true";
+  likeElement.setAttribute("data-liked", !isLiked);
+  console.log(`Pokemon ${likeElement.id} liked: ${!isLiked}`);
 
-init();
+  svg.classList.toggle("liked");
+}
+
+window.viewDetails = viewDetails;
