@@ -1,0 +1,136 @@
+import { loadJson, el, create } from "./lib.js";
+
+let currentPage = 1;
+const limit = 12;
+let typeColors = {};
+
+async function loadTypesColors() {
+  typeColors = await loadJson("../../data/pokemon_types_with_colors.json");
+  if (!typeColors) {
+    console.error("Fail to load type Colors");
+  }
+}
+
+async function init() {
+  await loadTypesColors();
+  getPokemonList();
+}
+
+export async function getPokemonList(page = 1) {
+  currentPage = page;
+  const offset = (currentPage - 1) * limit;
+  const url = `https://pokeapi.co/api/v2/pokemon/?limit=${limit}&offset=${offset}`;
+
+  const data = await loadJson(url);
+  if (!data) {
+    console.error("load Error");
+    return;
+  }
+
+  // Add images URL to Pokemon objects
+  const pokemons = data.results.map((pokemon) => {
+    // Extraer el ID del Pokémon desde la URL
+    const pokemonId = pokemon.url.split("/")[6];
+    return {
+      ...pokemon,
+      imageUrl: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemonId}.svg`,
+      typeUrl: `https://pokeapi.co/api/v2/pokemon/${pokemonId}/`,
+    };
+  });
+
+  generateContent(pokemons);
+  createPagination();
+}
+
+function generateContent(pokemons) {
+  const pokegrid = el("#poke-grid");
+  pokegrid.innerHTML = "";
+
+  let content = "";
+  pokemons.forEach((element) => {
+    const pokemonId = element.url.split("/")[6];
+
+    let pokemonType = "normal";
+    if (element.typeUrl) {
+      loadJson(element.typeUrl).then((details) => {
+        pokemonType = details.types[0].type.name;
+        const typeColor = typeColors[pokemonType] || "#A8A77A";
+
+        el(`#poke-card-${pokemonId}`).style.backgroundColor = typeColor;
+      });
+    }
+
+    content += `
+      <div class="float-box cell is-relative is-clickable	">
+              <div id="poke-card-${pokemonId}" class="overlay  z-0">
+
+        <div class="like-box">
+            <span class="icon">
+                <svg class="like-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z" />
+                </svg>
+            </span>
+        </div>
+        </div>
+        <div class="box is-poke-background is-flex is-flex-direction-column	is-align-items-center			">
+            <figure class="image is-128x128">
+                <img src="${element.imageUrl}" />
+            </figure>
+            <br />
+            <div class="content">
+                <p class="is-size-5 
+          has-text-centered 
+          is-capitalized
+          is-relative z-0
+          ">
+                    <strong class=""> ${element.name} </strong>
+                    <br />
+                <div class="buttons">
+                    <a onclick="viewDetails(${pokemonId})" class="button is-primary">
+                        <strong> Mehr Info </strong>
+                    </a>
+                </div>
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    `;
+  });
+  pokegrid.innerHTML = content;
+}
+
+function viewDetails(pokemonId) {
+  window.location.href = `single.html?id=${pokemonId}`;
+}
+
+function createPagination() {
+  const pagination = el("#pagination");
+  pagination.innerHTML = "";
+
+  if (currentPage > 1) {
+    const prevButton = create("button");
+    prevButton.textContent = "Previous page";
+    prevButton.classList.add("button");
+    prevButton.addEventListener("click", () => {
+      currentPage--;
+      getPokemonList(currentPage);
+    });
+
+    pagination.appendChild(prevButton);
+  }
+
+  const nextButton = create("button");
+  nextButton.textContent = "Next page";
+  nextButton.classList.add("button");
+  nextButton.addEventListener("click", () => {
+    currentPage++;
+    getPokemonList(currentPage);
+  });
+
+  pagination.appendChild(nextButton);
+}
+
+window.viewDetails = viewDetails;
+
+init();

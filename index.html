@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="de" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css"
+    />
+    <link rel="stylesheet" href="./css/style.css" />
+    <script type="module" src="./js/app.js"></script>
+    <title>PoKedex</title>
+  </head>
+  <body>
+    <img
+      class="is-background-v1"
+      src="./assets/Comic-style-background.webp"
+      alt="PokeDex - background"
+    />
+    <div class="poke-loader is-hidden">
+      <div class="ball"></div>
+    </div>
+    <div class="container">
+      <header>
+        <nav
+          class="is-transparent navbar"
+          role="navigation"
+          aria-label="main navigation"
+        >
+          <div class="navbar-start">
+            <div class="navbar-item">
+              <div class="buttons">
+                <a class="button is-primary">
+                  <strong>Sign up</strong>
+                </a>
+                <a class="button is-light"> Log in </a>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </header>
+
+      <section class="section">
+        <div class="fixed-grid has-4-cols has-1-cols-mobile">
+          <div id="poke-grid" class="grid"></div>
+        </div>
+
+        <div id="pagination" class="pagination-buttons"></div>
+      </section>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,175 @@
+.is-background-v1 {
+  min-height: 100%;
+  min-width: 1024px;
+	
+  /* Set up proportionate scaling */
+  width: 100%;
+  height: auto;
+	
+  /* Set up positioning */
+  position: fixed;
+  top: 0;
+  left: 0;
+
+}
+
+.is-poke-background {
+  background-image: url("../assets/card-background.webp");
+  background-size: cover;
+}
+
+.z-0 {
+  z-index: 0;
+}
+.z-1 {
+  z-index: 1;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 11px;
+  margin: 12px;
+}
+
+.float-box.cell {
+  border-radius: 11px;
+}
+
+.float-box {
+  transition: all 0.5s ease-out;
+}
+.float-box:hover {
+  -webkit-box-shadow: 5px 5px 41px 5px rgba(0, 0, 0, 0.73);
+  box-shadow: 5px 5px 41px 5px rgba(0, 0, 0, 0.73);
+}
+
+.image.is-128x128 img {
+  height: 100% !important;
+}
+
+.like-box {
+  position: absolute;
+  z-index: 1;
+  right: 0;
+  padding: 0.5em;
+}
+.like-box .like-icon {
+  fill: transparent;
+  stroke: black;
+}
+
+.navbar {
+  &.is-transparent {
+    background-color: transparent;
+    background-image: none;
+  }
+}
+
+/**Loader**/
+
+
+
+.poke-loader {
+  position: fixed;
+  z-index: 50;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #ffdf6d;
+}
+
+.ball {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: white;
+  position: relative;
+  box-shadow: -20px 0 rgba(0, 0, 0, 0.1) inset;
+  animation: roll 1s ease-in-out infinite;
+  background: linear-gradient(
+    to bottom,
+    #e83e35 0%,
+    #e83e35 50.5%,
+    #ffffff 50.51%,
+    #ffffff 100%
+  );
+}
+
+.ball:after {
+  content: "";
+  position: absolute;
+  top: calc(100px - 3px);
+  left: 0;
+  width: 200px;
+  height: 6px;
+  background: #3f3f3f;
+}
+
+.ball:before {
+  content: "";
+  position: absolute;
+  top: 67px;
+  left: 67px;
+  width: 54px;
+  height: 54px;
+  border: solid 6px #3f3f3f;
+  border-radius: 50%;
+  background: white;
+  z-index: 1;
+  box-shadow: 0 0 15px -2px #c62828 inset;
+  animation: buttonGlow 3s ease infinite;
+}
+
+@-webkit-keyframes roll {
+  from {
+    transform: rotate(0deg);
+  }
+  90%,
+  to {
+    transform: rotate(720deg);
+  }
+}
+
+@keyframes roll {
+  from {
+    transform: rotate(0deg); /* Se agregó la unidad 'deg' */
+  }
+  90%,
+  to {
+    transform: rotate(720deg);
+  }
+}
+
+/* Animación de brillo para el círculo central 'buttonGlow' */
+@-webkit-keyframes buttonGlow {
+  from,
+  50%,
+  to {
+    box-shadow: 0 0 15px -2px #c62828 inset;
+  }
+
+  25%,
+  75% {
+    box-shadow: 0 0 10px -2px #1300ea inset;
+  }
+}
+
+@keyframes buttonGlow {
+  from,
+  50%,
+  to {
+    box-shadow: 0 0 15px -2px #c62828 inset;
+  }
+
+  25%,
+  75% {
+    box-shadow: 0 0 10px -2px #1300ea inset;
+  }
+}

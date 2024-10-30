@@ -1,0 +1,194 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Bulbasaur",
+          "evolutions": ["Ivysaur", "Venusaur"],
+          "image_url": "https://img.pokemondb.net/artwork/bulbasaur.jpg",
+          "city": "Paris"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [2.3522, 48.8566]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Bulbasaur",
+          "evolutions": ["Ivysaur", "Venusaur"],
+          "image_url": "https://img.pokemondb.net/artwork/bulbasaur.jpg",
+          "city": "Berlin"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [13.405, 52.52]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Charmander",
+          "evolutions": ["Charmeleon", "Charizard"],
+          "image_url": "https://img.pokemondb.net/artwork/charmander.jpg",
+          "city": "Barcelona"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [2.1734, 41.3851]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Charmander",
+          "evolutions": ["Charmeleon", "Charizard"],
+          "image_url": "https://img.pokemondb.net/artwork/charmander.jpg",
+          "city": "Rome"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [12.4964, 41.9028]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Squirtle",
+          "evolutions": ["Wartortle", "Blastoise"],
+          "image_url": "https://img.pokemondb.net/artwork/squirtle.jpg",
+          "city": "Amsterdam"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [4.9041, 52.3676]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Squirtle",
+          "evolutions": ["Wartortle", "Blastoise"],
+          "image_url": "https://img.pokemondb.net/artwork/squirtle.jpg",
+          "city": "Copenhagen"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [12.5683, 55.6761]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Pikachu",
+          "evolutions": ["Raichu"],
+          "image_url": "https://img.pokemondb.net/artwork/pikachu.jpg",
+          "city": "London"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [-0.1278, 51.5074]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Pikachu",
+          "evolutions": ["Raichu"],
+          "image_url": "https://img.pokemondb.net/artwork/pikachu.jpg",
+          "city": "Lisbon"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [-9.1393, 38.7223]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Eevee",
+          "evolutions": [
+            "Vaporeon", "Jolteon", "Flareon", "Espeon",
+            "Umbreon", "Leafeon", "Glaceon", "Sylveon"
+          ],
+          "image_url": "https://img.pokemondb.net/artwork/eevee.jpg",
+          "city": "Stockholm"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [18.0686, 59.3293]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Eevee",
+          "evolutions": [
+            "Vaporeon", "Jolteon", "Flareon", "Espeon",
+            "Umbreon", "Leafeon", "Glaceon", "Sylveon"
+          ],
+          "image_url": "https://img.pokemondb.net/artwork/eevee.jpg",
+          "city": "Vienna"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [16.3738, 48.2082]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Magikarp",
+          "evolutions": ["Gyarados"],
+          "image_url": "https://img.pokemondb.net/artwork/magikarp.jpg",
+          "city": "Venice"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [12.3155, 45.4408]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Magikarp",
+          "evolutions": ["Gyarados"],
+          "image_url": "https://img.pokemondb.net/artwork/magikarp.jpg",
+          "city": "Athens"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [23.7275, 37.9838]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Dratini",
+          "evolutions": ["Dragonair", "Dragonite"],
+          "image_url": "https://img.pokemondb.net/artwork/dratini.jpg",
+          "city": "Madrid"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [-3.7038, 40.4168]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Dratini",
+          "evolutions": ["Dragonair", "Dragonite"],
+          "image_url": "https://img.pokemondb.net/artwork/dratini.jpg",
+          "city": "Dublin"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [-6.2603, 53.3498]
+        }
+      }
+    ]
+  }
+  
