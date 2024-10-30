@@ -12,56 +12,77 @@
     <title>Pokemon Detail</title>
   </head>
   <body>
-    <div id="pokemon-details">
-      <section class="section">
-        <div class="container">
-          <div class="columns is-centered">
-            <div class="column is-half">
-              <div class="card">
-                <div class="card-image">
-                  <figure class="image is-square">
-                    <img id="featuredImage" src="" alt="" />
-                  </figure>
-                </div>
-                <div class="card-content">
-                  <p id="pokemon-name" class="title is-2 has-text-centered">
-                    Pikachu
-                  </p>
-                  <div class="tags is-centered">
-                    <span id="type" class="tag is-warning is-light"
-                      >Electric</span
-                    >
+    <img
+      class="is-background-v1"
+      src="./assets/galaxy-planets-digital-art.webp"
+      alt="PokeDex - background"
+    />
+    <div id="loader" class="poke-loader is-hidden">
+      <div class="ball"></div>
+    </div>
+    <section class="hero is-fullheight">
+      <div class="hero-body">
+        <div class="container has-text-centered">
+          <div id="pokemon-details">
+            <div class="columns is-centered">
+              <div class="column is-half">
+                <div id="card" class="card is-relative">
+                  <div class="like-box">
+                    <span class="icon">
+                      <svg
+                        class="like-icon"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z"
+                        />
+                      </svg>
+                    </span>
                   </div>
-                  <div class="content">
-                    <div class="columns is-mobile is-multiline">
-                      <div class="column is-half">
-                        <p class="heading">HP</p>
-                        <p class="title is-4">35</p>
-                      </div>
-                      <div class="column is-half">
-                        <p class="heading">Attack</p>
-                        <p class="title is-4">55</p>
-                      </div>
-                      <div class="column is-half">
-                        <p class="heading">Defense</p>
-                        <p class="title is-4">40</p>
-                      </div>
-                      <div class="column is-half">
-                        <p class="heading">Speed</p>
-                        <p class="title is-4">90</p>
-                      </div>
+                  <div class="card-image">
+                    <br />
+                    <figure class="image is-4by3">
+                      <img id="featuredImage" src="" alt="" />
+                    </figure>
+                  </div>
+                  <div class="card-content z-1 is-relative">
+                    <p
+                      id="pokemon-name"
+                      class="title is-2 has-text-centered is-capitalized"
+                    ></p>
+                    <div class="tags is-centered">
+                      <span
+                        id="type"
+                        class="tag is-light has-text-weight-bold is-size-6"
+                      ></span>
                     </div>
-                    <p class="has-text-centered">
-                      Pikachu is an Electric-type Pokémon introduced in
-                      Generation I. It is known as the Mouse Pokémon.
-                    </p>
+                    <div class="content">
+                      <div
+                        id="stats"
+                        class="columns is-mobile is-multiline"
+                      ></div>
+                      <div class="is-divider"></div>
+                      <p
+                        id="desciption"
+                        class="is-capitalized has-text-centered"
+                      >
+                        Pikachu is an Electric-type Pokémon introduced in
+                        Generation I. It is known as the Mouse Pokémon.
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </section>
-    </div>
+      </div>
+      <div id="back" class="back-button is-clickable">
+        <span class="icon">
+          <img src="./assets/keyboard-backspace.svg" alt="" srcset="" />
+        </span>
+      </div>
+    </section>
   </body>
 </html>
