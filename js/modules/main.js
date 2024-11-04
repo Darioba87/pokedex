@@ -63,6 +63,7 @@ async function generateContent(pokemons) {
       const details = await loadJson(element.typeUrl);
       pokemonType = details.types[0].type.name;
       const typeColor = typeColors[pokemonType] || "#A8A77A";
+      element["color"] = typeColor;
 
       // Generar contenido para cada Pokémon
       content += `
@@ -167,6 +168,7 @@ async function likeButton(event, pokemon) {
       id: pokemon.id,
       name: pokemon.name,
       imageUrl: pokemon.imageUrl,
+      bgColor: pokemon.color,
     };
 
     try {
