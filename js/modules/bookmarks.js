@@ -11,10 +11,10 @@ async function getPokemonsOnDb() {
   data.forEach((pokemon) => {
     content += `
     <div class="cell float-box">
-          <div class="box grid is-justify-items-center is-poke-background is-relative">
+          <div class="box is-unselectable grid is-justify-items-center is-poke-background is-relative">
             <div id="poke-card-${pokemon.id}" class="overlay z-0" style="background-color: ${pokemon.bgColor};"></div>
             <div id="like-${pokemon.id}" class="like like-box is-clickable" data-liked="true"
-      }">
+      ">
               <span class="icon">
                 <svg
                   class="like-icon liked"
@@ -27,7 +27,7 @@ async function getPokemonsOnDb() {
                 </svg>
               </span>
             </div>
-            <figure class="image is-128x128">
+            <figure class="image is-128x128 is-unselectable">
               <img src="${pokemon.imageUrl}" />
             </figure>
             <div class="content">
@@ -47,6 +47,22 @@ async function getPokemonsOnDb() {
 
   pokegrid.innerHTML = content;
   el("#loader").classList.add("is-hidden");
+
+  data.forEach((pokemon) => {
+    getNotLike(pokemon.id);
+  });
+}
+
+async function getNotLike(pokemonId) {
+  let pokeLiked = el(`#like-${pokemonId}`);
+  pokeLiked.addEventListener("click", function () {
+    pokeLiked.setAttribute("data-liked", false);
+    pokeLiked.querySelector(".like-icon").classList.remove("liked");
+    db.deleteItem(pokemonId);
+    setTimeout(() => {
+      location.reload();
+    }, 1000);
+  });
 }
 
 getPokemonsOnDb();
