@@ -8,7 +8,7 @@
       href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css"
     />
     <link rel="stylesheet" href="./css/style.css" />
-    <script type="module" src="./js/app.js"></script>
+    <script type="module" src="./js/modules/bookmarks.js"></script>
     <title>PoKedex</title>
   </head>
   <body>
@@ -20,10 +20,9 @@
     <div id="loader" class="poke-loader is-hidden">
       <div class="ball"></div>
     </div>
-
-    <header class="">
+    <header>
       <nav
-        class="navbar has-background-primary	"
+        class="navbar"
         role="navigation"
         aria-label="main navigation"
       >
@@ -71,11 +70,6 @@
         <div class="fixed-grid has-4-cols has-1-cols-mobile">
           <div id="poke-grid" class="grid"></div>
         </div>
-
-        <div
-          id="pagination"
-          class="pagination-buttons is-flex is-justify-content-space-between"
-        ></div>
       </section>
     </div>
   </body>

@@ -1,4 +1,6 @@
-import { el, create, loadJson } from "./lib.js";
+import { el, loadJson } from "./lib.js";
+import { db } from "./db.js";
+import { getListButton, getRespNavbar } from "./menu.js";
 
 const basicPathUrl = window.location.protocol + "//" + window.location.host;
 let typeColors = {};
@@ -65,6 +67,7 @@ async function getSinglePokemon() {
   setTimeout(() => {
     el("#loader").classList.add("is-hidden");
   }, 1000);
+  getPokemonOnIdb(pokemonId);
 }
 
 function displayInfo(pokemon) {
@@ -96,9 +99,23 @@ function back() {
 
 async function init() {
   await loadTypesColors();
-
   getSinglePokemon();
+  getRespNavbar();
+  getListButton();
+}
+
+async function getPokemonOnIdb(pokeId) {
+  const keys = await db.readKeys();
+
+  keys.forEach((key) => {
+    if (key === pokeId) {
+      el("#like-icon").classList.add("liked");
+    }
+  });
 }
 
 init();
-el('#back').addEventListener('click', back)
+el("#back").addEventListener("click", back);
+
+// TODO
+// Single Page Like Button Functionality

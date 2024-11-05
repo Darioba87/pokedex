@@ -113,6 +113,12 @@
   display: flex;
 }
 
+.logo {
+ width: auto;
+ height: 70px ;
+ max-height: 70px !important;
+}
+
 /**Loader**/
 
 .poke-loader {
