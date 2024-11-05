@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="de" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css"
+    />
+    <link rel="stylesheet" href="./js/leaflet/leaflet.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <script src="./js/modules/"></script>
+    <title>PoKedex</title>
+  </head>
+  <body>
+    <img
+      class="is-background-v1"
+      src="./assets/Comic-style-background.webp"
+      alt="PokeDex - background"
+    />
+    <div id="loader" class="poke-loader is-hidden">
+      <div class="ball"></div>
+    </div>
+
+    <header class="">
+      <nav
+        class="navbar has-background-primary"
+        role="navigation"
+        aria-label="main navigation"
+      >
+        <div class="navbar-brand">
+          <div class="navbar-item">
+            <img class="logo" src="./assets/logo.webp" />
+          </div>
+
+          <a
+            role="button"
+            class="navbar-burger"
+            aria-label="menu"
+            aria-expanded="false"
+            data-target="navMenu"
+          >
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+        </div>
+
+        <div class="navbar-menu is-transparent" id="navMenu">
+          <div class="navbar-start">
+            <a class="navbar-item" href="./index.html"> Home </a>
+
+            <a href="./documentation.html" class="navbar-item">
+              Documentation
+            </a>
+            <a href="./location.html" class="navbar-item">
+              Pokemon Go map Location
+            </a>
+          </div>
+
+          <div class="navbar-end">
+            <div class="navbar-item">
+              <div class="buttons" id="list-button"></div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <div class="container is-fullhd">
+      <section class="section">
+        <div class="columns">
+          <div class="column is-one-fifth">test</div>
+          <div class="column is-four-fifths">
+            <div id="map"></div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>
