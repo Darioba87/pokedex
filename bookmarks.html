@@ -20,26 +20,52 @@
     <div id="loader" class="poke-loader is-hidden">
       <div class="ball"></div>
     </div>
-    <div class="container">
-      <header>
-        <nav
-          class="is-transparent navbar"
-          role="navigation"
-          aria-label="main navigation"
-        >
+    <header>
+      <nav
+        class="navbar"
+        role="navigation"
+        aria-label="main navigation"
+      >
+        <div class="navbar-brand">
+          <div class="navbar-item">
+            <img class="logo" src="./assets/logo.webp" />
+          </div>
+
+          <a
+            role="button"
+            class="navbar-burger"
+            aria-label="menu"
+            aria-expanded="false"
+            data-target="navMenu"
+          >
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+        </div>
+
+        <div class="navbar-menu is-transparent" id="navMenu">
           <div class="navbar-start">
+            <a class="navbar-item" href="./index.html"> Home </a>
+
+            <a href="./documentation.html" class="navbar-item">
+              Documentation
+            </a>
+            <a href="./location.html" class="navbar-item">
+              Pokemon Go map Location
+            </a>
+          </div>
+
+          <div class="navbar-end">
             <div class="navbar-item">
-              <div class="buttons">
-                <a class="button is-primary">
-                  <strong>Sign up</strong>
-                </a>
-                <a class="button is-light"> Log in </a>
-              </div>
+              <div class="buttons" id="list-button"></div>
             </div>
           </div>
-        </nav>
-      </header>
-
+        </div>
+      </nav>
+    </header>
+    <div class="container">
       <section class="section">
         <div class="fixed-grid has-4-cols has-1-cols-mobile">
           <div id="poke-grid" class="grid"></div>

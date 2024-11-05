@@ -1,5 +1,6 @@
 import { el, loadJson } from "./lib.js";
 import { db } from "./db.js";
+import { getListButton, getRespNavbar } from "./menu.js";
 
 const basicPathUrl = window.location.protocol + "//" + window.location.host;
 let typeColors = {};
@@ -99,6 +100,8 @@ function back() {
 async function init() {
   await loadTypesColors();
   getSinglePokemon();
+  getRespNavbar();
+  getListButton();
 }
 
 async function getPokemonOnIdb(pokeId) {
@@ -113,3 +116,6 @@ async function getPokemonOnIdb(pokeId) {
 
 init();
 el("#back").addEventListener("click", back);
+
+// TODO
+// Single Page Like Button Functionality

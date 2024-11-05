@@ -1,5 +1,6 @@
 import { loadJson, el, create } from "./lib.js";
 import { db } from "./db.js";
+import { getListButton } from "./menu.js";
 
 let currentPage = 1;
 const limit = 12;
@@ -19,6 +20,7 @@ async function loadTypesColors() {
 export async function init() {
   await loadTypesColors();
   await getPokemonList();
+  await getListButton();
 }
 
 export async function getPokemonList(page = 1) {
@@ -161,6 +163,8 @@ async function likeButton(event, pokemon) {
   const isLiked = likeElement.getAttribute("data-liked") === "true";
   likeElement.setAttribute("data-liked", !isLiked);
 
+  const keys = await db.readKeys();
+
   svg.classList.toggle("liked");
 
   if (!isLiked) {
@@ -173,21 +177,22 @@ async function likeButton(event, pokemon) {
 
     try {
       await db.writeItem(pokemon.id, pokeData);
-      console.log(`Pokemon ${pokemon.name} saved, ${pokemon.id}`);
-      console.log(pokemon);
+      (`Pokemon ${pokemon.name} saved, ${pokemon.id}`);
+      getListButton();
     } catch (error) {
-      console.log("Filed to save", error);
+      ("Filed to save", error);
     }
   } else {
     db.deleteItem(pokemon.id);
-    console.log(`Pokemon ${pokemon.name} unliked.`);
+    (`Pokemon ${pokemon.name} removed, ${pokemon.id}`);
+    getListButton();
   }
 }
 
 async function isPokemonStored(pokemonId) {
   try {
     const storedKeys = await db.readKeys();
-    return storedKeys.includes(pokemonId);
+    return storedKeys.includes(String(pokemonId));
   } catch (error) {
     console.error(`Error checking if Pokémon ${pokemonId} is stored:`, error);
     return false;
