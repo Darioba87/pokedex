@@ -6,7 +6,7 @@ const basicPathUrl = window.location.protocol + "//" + window.location.host;
 let typeColors = {};
 
 async function loadTypesColors() {
-  typeColors = await loadJson("../../data/pokemon_types_with_colors.json");
+  typeColors = await loadJson("data/pokemon_types_with_colors.json");
   if (!typeColors) {
     console.error("Failed to load type colors");
   }
@@ -64,10 +64,11 @@ async function getSinglePokemon() {
   };
 
   displayInfo(featuredPokemon);
+
+  getPokemonOnIdb(pokemonId);
   setTimeout(() => {
     el("#loader").classList.add("is-hidden");
   }, 1000);
-  getPokemonOnIdb(pokemonId);
 }
 
 function displayInfo(pokemon) {
@@ -116,6 +117,3 @@ async function getPokemonOnIdb(pokeId) {
 
 init();
 el("#back").addEventListener("click", back);
-
-// TODO
-// Single Page Like Button Functionality
