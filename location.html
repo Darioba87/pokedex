@@ -3,7 +3,6 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <!--Favicon-->
     <link
       rel="apple-touch-icon"
@@ -23,11 +22,12 @@
       href="./assets//favicon/favicon-16x16.png"
     />
     <link rel="manifest" href="./assets//favicon/site.webmanifest" />
-    <link rel="stylesheet" href="./css/bulma.min.css" />
+   <link rel="stylesheet" href="./css/bulma.min.css" />
     <!--End Favicon-->
-
+   <link rel="stylesheet" href="./css/bulma.min.css" />
+    <link rel="stylesheet" href="./js/leaflet/leaflet.css" />
     <link rel="stylesheet" href="./css/style.css" />
-    <script type="module" src="./js/app.js"></script>
+    <script type="module" src="./js/modules/maps.js"></script>
     <title>PoKedex</title>
   </head>
   <body>
@@ -69,7 +69,9 @@
           <div class="navbar-start">
             <a class="navbar-item" href="./index.html"> Home </a>
 
-            <a href="./impress.html" class="navbar-item"> Impress </a>
+            <a href="./impress.html" class="navbar-item">
+              Impress
+            </a>
             <a href="./location.html" class="navbar-item">
               Pokemon Go map Location
             </a>
@@ -83,16 +85,25 @@
         </div>
       </nav>
     </header>
-    <div class="container">
+    <div class="container is-fullhd">
       <section class="section">
-        <div class="fixed-grid has-4-cols has-1-cols-mobile">
-          <div id="poke-grid" class="grid"></div>
+        <div class="columns">
+          <div class="column is-one-fifth">
+            <div class="control">
+              <input
+                id="search"
+                class="input"
+                type="text"
+                placeholder="Search Pokémon"
+                autocomplete="off"
+              />
+              <div id="suggestions" class="box is-hidden"></div>
+            </div>
+          </div>
+          <div class="column is-four-fifths">
+            <div class="box" id="map"></div>
+          </div>
         </div>
-
-        <div
-          id="pagination"
-          class="pagination-buttons is-flex is-justify-content-space-between"
-        ></div>
       </section>
     </div>
   </body>
