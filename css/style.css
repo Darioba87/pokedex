@@ -260,3 +260,6 @@ input[type=text] {
 .suggestion-item:hover {
   background-color: #f0f0f0;
 }
+.leaflet-popup-content {
+  margin: 0;
+}

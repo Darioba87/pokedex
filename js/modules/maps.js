@@ -86,10 +86,10 @@ function getResults(data) {
     onEachFeature: function (feature, layer) {
       const type = feature.properties.terrain.toLowerCase();
       const color = pokemonColors[type] || "rgba(0, 0, 0, 0.8)";
-      console.log(color);
+      console.log(pokemonColors[type]);
 
       layer.bindPopup(`
-       <div class="content">
+       <div class="content box" style="background-color:${color};">
           <h3>${feature.properties.name}</h3>
           <p class="title is-6">City: <br/>${feature.properties.city}</p>
           <p class="title is-6">Evolutions: <br/>${
@@ -107,5 +107,10 @@ function getResults(data) {
   }).addTo(map);
 }
 
-showMap();
-fetchInfo();
+async function init() {
+  await getColors();
+  showMap();
+  await fetchInfo();
+}
+
+init();
