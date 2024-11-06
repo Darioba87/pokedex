@@ -86,7 +86,6 @@ function getResults(data) {
     onEachFeature: function (feature, layer) {
       const type = feature.properties.terrain.toLowerCase();
       const color = pokemonColors[type] || "rgba(0, 0, 0, 0.8)";
-      console.log(pokemonColors[type]);
 
       layer.bindPopup(`
        <div class="content box" style="background-color:${color};">
