@@ -11,7 +11,7 @@ let typeColors = {};
  */
 
 async function loadTypesColors() {
-  typeColors = await loadJson("../../data/pokemon_types_with_colors.json");
+  typeColors = await loadJson("data/pokemon_types_with_colors.json");
   if (!typeColors) {
     console.error("Fail to load type Colors");
   }
