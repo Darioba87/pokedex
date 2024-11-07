@@ -25,6 +25,7 @@ async function getSinglePokemon() {
   const data = await loadJson(
     `https://pokeapi.co/api/v2/pokemon/${pokemonId}/`
   );
+  
 
   const speciesData = await loadJson(
     `https://pokeapi.co/api/v2/pokemon-species/${pokemonId}/`
