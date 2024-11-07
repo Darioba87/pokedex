@@ -15,7 +15,7 @@ async function checkIdb() {
     <div class="modal-background"></div>
       <div class="modal-content">
       <div class="box">
-      <img src="../../assets/empty-removebg-preview.webp" alt="empty box"/>
+      <img src="/assets/empty-removebg-preview.webp" alt="empty box"/>
         <p>Unfortunately, you haven't saved anything to your favorites page yet. 
         Save something Pokémon-related that you like and 
         come back to see your collection.</p>
