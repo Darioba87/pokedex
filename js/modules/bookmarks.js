@@ -2,9 +2,13 @@ import { db } from "./db.js";
 import { el } from "./lib.js";
 import { getListButton, getRespNavbar } from "./menu.js";
 
+
+
+
 async function checkIdb() {
   const data = await db.readKeys();
   let modal;
+
   if (data.length !== 0) {
     getPokemonsOnDb();
     getRespNavbar();
@@ -15,7 +19,7 @@ async function checkIdb() {
     <div class="modal-background"></div>
       <div class="modal-content">
       <div class="box">
-      <img src="/assets/empty-removebg-preview.webp" alt="empty box"/>
+      <img src="assets/empty.webp" alt="empty box"/>
         <p>Unfortunately, you haven't saved anything to your favorites page yet. 
         Save something Pokémon-related that you like and 
         come back to see your collection.</p>
@@ -34,7 +38,6 @@ async function checkIdb() {
 
 async function getPokemonsOnDb() {
   const data = await db.readValues();
-
   const pokegrid = el("#poke-grid");
   pokegrid.innerHTML = "";
   el("#loader").classList.remove("is-hidden");
