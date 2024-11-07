@@ -5,6 +5,11 @@
 ## Description
 **Pokédex PWA** is a Progressive Web Application (PWA) that allows users to explore detailed information about different Pokémon. It works both online and offline, enabling access to Pokémon data even without an internet connection. The application is designed to be installable on mobile or desktop devices and includes an interactive map for locating Pokémon worldwide.
 
+## App URL
+```plaintext
+    https://darioba87.github.io/pokedex/
+```
+
 ## Key Features
 
 - **Browse Pokémon**: Explore a list of Pokémon with detailed information about each, including evolutions, stats, and types.
