@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="de" data-theme="light">
   <head>
-    <link rel="manifest" href="manifest.json" />
+    <link rel="manifest" href="./manifest.json" />
 
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -24,7 +24,6 @@
       sizes="16x16"
       href="./assets//favicon/favicon-16x16.png"
     />
-    <link rel="manifest" href="./assets//favicon/site.webmanifest" />
     <link rel="stylesheet" href="./css/bulma.min.css" />
     <!--End Favicon-->
 
@@ -101,7 +100,7 @@
       if ("serviceWorker" in navigator) {
         window.addEventListener("load", () => {
           navigator.serviceWorker
-            .register("service-worker.js")
+            .register("./service-worker.js")
             .then((registration) => {
               console.log(
                 "Service Worker registered with scope:",
