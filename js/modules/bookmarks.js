@@ -2,6 +2,36 @@ import { db } from "./db.js";
 import { el } from "./lib.js";
 import { getListButton, getRespNavbar } from "./menu.js";
 
+async function checkIdb() {
+  const data = await db.readKeys();
+  let modal;
+  if (data.length !== 0) {
+    getPokemonsOnDb();
+    getRespNavbar();
+    getListButton();
+  } else {
+    modal = `
+  <div class="modal is-active">
+    <div class="modal-background"></div>
+      <div class="modal-content">
+      <div class="box">
+      <img src="../../assets/empty-removebg-preview.webp" alt="empty box"/>
+        <p>Unfortunately, you haven't saved anything to your favorites page yet. 
+        Save something Pokémon-related that you like and 
+        come back to see your collection.</p>
+        <br/>
+        <span>You will be redirected to the main page shortly.</span>
+      </div>
+    </div>
+  </div>
+    `;
+    document.body.insertAdjacentHTML("beforeend", modal);
+    setTimeout(() => {
+      window.location.href = "index.html";
+    }, 6000);
+  }
+}
+
 async function getPokemonsOnDb() {
   const data = await db.readValues();
 
@@ -61,13 +91,13 @@ async function getNotLike(pokemonId) {
     const pokemonElement = el(`#pokemon-${pokemonId}`);
     if (pokemonElement) {
       pokemonElement.remove();
-      (`Removed from DOM: #pokemon-${pokemonId}`);
+      `Removed from DOM: #pokemon-${pokemonId}`;
     } else {
       console.error(`Element #pokemon-${pokemonId} not found in DOM`);
     }
 
     db.deleteItem(pokemonId);
-    (`Removed from IndexedDB: Pokémon ID ${pokemonId}`);
+    `Removed from IndexedDB: Pokémon ID ${pokemonId}`;
 
     const remainingItems = await db.readKeys();
     if (remainingItems.length === 0) {
@@ -82,6 +112,10 @@ async function getNotLike(pokemonId) {
   });
 }
 
-getPokemonsOnDb();
-getRespNavbar();
-getListButton();
+function viewDetails(pokemonId) {
+  window.location.href = `single.html?id=${pokemonId}`;
+}
+
+window.viewDetails = viewDetails;
+
+checkIdb();

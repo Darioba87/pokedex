@@ -25,7 +25,6 @@ async function getSinglePokemon() {
   const data = await loadJson(
     `https://pokeapi.co/api/v2/pokemon/${pokemonId}/`
   );
-
   const speciesData = await loadJson(
     `https://pokeapi.co/api/v2/pokemon-species/${pokemonId}/`
   );
@@ -50,7 +49,7 @@ async function getSinglePokemon() {
   const abilities = data.abilities.map((ability) => ability.ability.name);
 
   // Obtain Color
-  const primaryType = data.types[0]?.type.name || "normal;";
+  const primaryType = data.types[0]?.type.name || "normal";
   const typeColor = typeColors[primaryType] || "#A8A77A";
 
   const featuredPokemon = {

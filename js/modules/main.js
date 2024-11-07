@@ -57,7 +57,6 @@ async function generateContent(pokemons) {
   for (const element of pokemons) {
     const pokemonId = element.id;
 
-    // Llamar a la función independiente para verificar si el Pokémon está en IndexedDB
     const isStored = await isPokemonStored(pokemonId);
 
     let pokemonType = "normal";
@@ -67,7 +66,6 @@ async function generateContent(pokemons) {
       const typeColor = typeColors[pokemonType] || "#A8A77A";
       element["color"] = typeColor;
 
-      // Generar contenido para cada Pokémon
       content += `
         <div class="cell float-box">
           <div class="box grid is-justify-items-center is-poke-background is-relative">
@@ -110,7 +108,6 @@ async function generateContent(pokemons) {
 
   pokegrid.innerHTML = content;
 
-  // Agregar event listeners a los botones de 'like'
   pokemons.forEach((element) => {
     const pokemonId = element.id;
     const likeElement = el(`#like-${pokemonId}`);
