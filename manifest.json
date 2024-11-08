@@ -2,7 +2,7 @@
     "name": "My PokeApp",
     "short_name": "PokeApp",
     "description": "A PWA application for exploring Pokémon.",
-    "start_url": "/",
+    "start_url": "./",
     "display": "standalone",
     "background_color": "#ffffff",
     "theme_color": "#4CAF50",
