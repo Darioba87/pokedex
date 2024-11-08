@@ -55,7 +55,13 @@ const STATIC_ASSETS = [
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(STATIC_ASSETS))
+    caches.open(CACHE_NAME).then(async (cache) => {
+      try {
+        await cache.addAll(STATIC_ASSETS);
+      } catch (error) {
+        console.error("Error caching static assets:", error);
+      }
+    })
   );
   self.skipWaiting();
 });
@@ -79,30 +85,23 @@ self.addEventListener("activate", (event) => {
 self.addEventListener("fetch", (event) => {
   const requestUrl = new URL(event.request.url);
 
-  // Handle requests to the API by caching API responses
   if (requestUrl.origin.includes("pokeapi.co")) {
     event.respondWith(
       caches.open(API_CACHE_NAME).then((cache) =>
-        fetch(event.request)
-          .then((response) => {
+        cache.match(event.request).then((cachedResponse) => {
+          const networkFetch = fetch(event.request).then((response) => {
             cache.put(event.request, response.clone());
             return response;
-          })
-          .catch(() => cache.match(event.request))
+          });
+          return cachedResponse || networkFetch;
+        })
       )
     );
-  } else {
-    const relativePath = requestUrl.pathname.replace(/^\/[^\/]+\//, "/");
-    const assetPath = STATIC_ASSETS.includes(relativePath)
-      ? relativePath
-      : requestUrl.pathname;
-
-    if (STATIC_ASSETS.includes(assetPath)) {
-      event.respondWith(
-        caches.match(event.request).then((response) => {
-          return response || fetch(event.request);
-        })
-      );
-    }
+  } else if (STATIC_ASSETS.includes(requestUrl.pathname)) {
+    event.respondWith(
+      caches.match(event.request).then((response) => {
+        return response || fetch(event.request);
+      })
+    );
   }
 });
