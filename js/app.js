@@ -4,6 +4,5 @@ import { getRespNavbar, getListButton } from "./modules/menu.js";
 getRespNavbar();
 getListButton();
 
-if (window.location.href.includes("index.html")) {
   init();
-}
+

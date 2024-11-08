@@ -1,8 +1,7 @@
 import { loadJson, el, create } from "./lib.js";
 import { db } from "./db.js";
 import { getListButton } from "./menu.js";
-// Loader
-el("#loader").classList.remove("is-hidden");
+
 let currentPage = 1;
 const limit = 12;
 let typeColors = {};
@@ -22,15 +21,7 @@ export async function init() {
   await loadTypesColors();
   await getPokemonList();
   await getListButton();
-
-  // if every functions loaded
 }
-
-/**
- * Get pokemon list. Start on page 1
- * @param {*} page
- * @returns
- */
 
 export async function getPokemonList(page = 1) {
   currentPage = page;
@@ -57,15 +48,10 @@ export async function getPokemonList(page = 1) {
   createPagination();
 }
 
-/**
- * Generate a full content whit pokemon info
- * @param {*} pokemons
- */
-
 async function generateContent(pokemons) {
   const pokegrid = el("#poke-grid");
   pokegrid.innerHTML = "";
-
+  el("#loader").classList.remove("is-hidden");
   let content = "";
 
   for (const element of pokemons) {
@@ -122,9 +108,6 @@ async function generateContent(pokemons) {
 
   pokegrid.innerHTML = content;
 
-  setTimeout(() => {
-    el("#loader").classList.add("is-hidden");
-  }, 1000);
   pokemons.forEach((element) => {
     const pokemonId = element.id;
     const likeElement = el(`#like-${pokemonId}`);
@@ -134,12 +117,12 @@ async function generateContent(pokemons) {
       );
     }
   });
+
+  setTimeout(() => {
+    el("#loader").classList.add("is-hidden");
+  }, 1000);
 }
 
-/**
- * The id parameter is sent in a parameter variable to the url to be used later in the pokemon call.
- * @param {*} pokemonId
- */
 function viewDetails(pokemonId) {
   window.location.href = `single.html?id=${pokemonId}`;
 }
@@ -191,14 +174,14 @@ async function likeButton(event, pokemon) {
 
     try {
       await db.writeItem(pokemon.id, pokeData);
-      `Pokemon ${pokemon.name} saved, ${pokemon.id}`;
+      (`Pokemon ${pokemon.name} saved, ${pokemon.id}`);
       getListButton();
     } catch (error) {
-      "Filed to save", error;
+      ("Filed to save", error);
     }
   } else {
     db.deleteItem(pokemon.id);
-    `Pokemon ${pokemon.name} removed, ${pokemon.id}`;
+    (`Pokemon ${pokemon.name} removed, ${pokemon.id}`);
     getListButton();
   }
 }
