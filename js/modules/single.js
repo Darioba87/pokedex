@@ -1,9 +1,10 @@
 import { el, loadJson } from "./lib.js";
 import { db } from "./db.js";
 import { getListButton, getRespNavbar } from "./menu.js";
-
+el("#loader").classList.remove("is-hidden");
 const basicPathUrl = window.location.protocol + "//" + window.location.host;
 let typeColors = {};
+
 
 async function loadTypesColors() {
   typeColors = await loadJson("data/pokemon_types_with_colors.json");
@@ -13,7 +14,6 @@ async function loadTypesColors() {
 }
 
 async function getSinglePokemon() {
-  el("#loader").classList.remove("is-hidden");
   const urlParam = new URLSearchParams(window.location.search);
   const pokemonId = urlParam.get("id");
 
@@ -65,9 +65,7 @@ async function getSinglePokemon() {
   displayInfo(featuredPokemon);
 
   getPokemonOnIdb(pokemonId);
-  setTimeout(() => {
-    el("#loader").classList.add("is-hidden");
-  }, 1000);
+
 }
 
 function displayInfo(pokemon) {
@@ -87,6 +85,9 @@ function displayInfo(pokemon) {
     `;
   });
   el("#stats").innerHTML = statsContent;
+  setTimeout(() => {
+    el("#loader").classList.add("is-hidden");
+  }, 1000);
 
   // Pokemon Desciption with text fix
 
@@ -102,6 +103,7 @@ async function init() {
   getSinglePokemon();
   getRespNavbar();
   getListButton();
+
 }
 
 async function getPokemonOnIdb(pokeId) {
