@@ -2,18 +2,16 @@ import { db } from "./db.js";
 import { el } from "./lib.js";
 import { getListButton, getRespNavbar } from "./menu.js";
 
-el("#loader").classList.remove("is-hidden");
 async function checkIdb() {
   const data = await db.readKeys();
   let modal;
 
   if (data.length !== 0) {
-  
     getPokemonsOnDb();
     getRespNavbar();
     getListButton();
-    el("#loader").classList.add("is-hidden");
   } else {
+    el("#loader").classList.add("is-hidden");
     modal = `
   <div class="modal is-active">
     <div class="modal-background"></div>
@@ -37,6 +35,7 @@ async function checkIdb() {
 }
 
 async function getPokemonsOnDb() {
+  el("#loader").classList.remove("is-hidden");
   const data = await db.readValues();
   const pokegrid = el("#poke-grid");
   pokegrid.innerHTML = "";
@@ -79,7 +78,7 @@ async function getPokemonsOnDb() {
   });
 
   pokegrid.innerHTML = content;
-
+  el("#loader").classList.add("is-hidden");
   data.forEach((pokemon) => {
     getNotLike(pokemon.id);
   });
